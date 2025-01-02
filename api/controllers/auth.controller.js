@@ -6,6 +6,7 @@ export const register = async (req, res) => {
     //db operations
     //console.log(req.body);
 
+try {
     // HASH THE PASSWORD
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -21,9 +22,41 @@ export const register = async (req, res) => {
         },
     });
     console.log(newUser);
+
+    res.status(201).json({ message: 'User created successfully' });
+} catch (err) {
+    console.log(err);
+    res.status(500).json({ message: 'Failed to create user!' });
+}
 };
-export const login = (req, res) => {
-    //db operations
+export const login = async (req, res) => {
+    const { username, password } = req.body;
+
+try{
+
+
+
+   // CHECK IF THE USER EXISTS
+
+   const user = await prisma.user.findUnique({
+    where: {username}
+    });
+
+    if(!user) return res.status(401).json({ message: 'Invalid credentials!' });
+    
+
+   // CHECK IF THE PASSWORD IS CORRECT
+
+   const isPasswordValid = await bcrypt.compare(password, user.password);
+
+   if(!isPasswordValid) return res.status(401).json({ message: 'Invalid credentials!' });
+
+   // GENERATE COOKIE TOKEN AND SEND TO THE USER
+   res.setHeader('Set-Cookie', 'test=' + 'myValue')
+}catch(err){
+    console.log(err);
+    res.status(500).json({ message: 'Failed to login!' });
+}
 };
 export const logout = (req, res) => {
     //db operations
