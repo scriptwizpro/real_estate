@@ -55,12 +55,17 @@ try{
    // GENERATE COOKIE TOKEN AND SEND TO THE USER
    //    res.setHeader('Set-Cookie', 'test=' + 'myValue').json({ message: 'Success' });
 
-
-    const token = jwt.sign({ id:user.id }, process.env.JWT_SECRET);
-
     const age = 1000 * 60 * 60 * 24 * 7; // 1 week
 
-    res.cookie('test2', 'myValue2', {
+    const token = jwt.sign(
+    { 
+        id:user.id,
+    },
+    process.env.JWT_SECRET_KEY,
+    { expiresIn: age } 
+    );
+
+    res.cookie('token', token, {
         httpOnly: true,
         // secure: true,
         maxAge: age,
@@ -72,5 +77,5 @@ try{
 }
 };
 export const logout = (req, res) => {
-    //db operations
+    res.clearCookie('token').status(200).json({ message: 'Logout Successful' });
 };
