@@ -1,0 +1,4 @@
+{
+    "console-ninja.nodeProgram": "node",
+    "console-ninja.nodeArgs": ["--watch", "app.js"]
+  }  
