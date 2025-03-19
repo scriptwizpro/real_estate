@@ -1,0 +1,41 @@
+.listPage {
+  display: flex;
+  height: 100%;
+
+  .listContainer {
+    flex: 3;
+    height: 100%;
+
+    .wrapper {
+      height: 100%;
+      padding-right: 50px;
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+      overflow-y: auto;
+      padding-bottom: 50px;
+    }
+/* Hide scrollbar but allow scrolling */
+.wrapper::-webkit-scrollbar {
+    width: 6px; /* Adjust as needed */
+  }
+  
+  .wrapper::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2); /* Subtle scrollbar */
+    border-radius: 10px;
+  }
+  
+  .wrapper::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+
+
+  }
+  .mapContainer {
+    flex: 2;
+    height: 100%;
+    background-color: #fcf5f3;
+  }
+
+}
