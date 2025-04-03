@@ -31,8 +31,11 @@ function Login() {
       password,
     });
 
-    console.log(res)
+    // console.log(res)
 
+    localStorage.setItem("user", JSON.stringify(res.data));
+
+    navigate("/");
     // navigate("/login");
     // console.log(res.data)
 

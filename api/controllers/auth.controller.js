@@ -65,11 +65,16 @@ try{
     { expiresIn: age } 
     );
 
-    res.cookie('token', token, {
+    const { password: userPassword, ...userInfo } = user;
+
+    res
+    .cookie('token', token, {
         httpOnly: true,
         // secure: true,
         maxAge: age,
-    }).status(200).json({ message: 'Login Successful' });
+    })
+    .status(200)
+    .json(userInfo);
 
 }catch(err){
     console.log(err);
