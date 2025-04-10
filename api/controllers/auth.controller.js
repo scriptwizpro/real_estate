@@ -59,7 +59,8 @@ try{
 
     const token = jwt.sign(
     { 
-        id:user.id,
+        id: user.id,
+        isAdmin: false,
     },
     process.env.JWT_SECRET_KEY,
     { expiresIn: age } 
