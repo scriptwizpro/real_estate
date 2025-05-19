@@ -1,4 +1,5 @@
 @import "../../responsive.scss";
+
 nav {
   height: 100px;
   display: flex;
@@ -51,7 +52,7 @@ nav {
     align-items: center;
     justify-content: flex-end;
     background-color: #fcf5f3;
-    height: 100%;
+    // height: 100%;
 
     @include md {
       background-color: transparent;
@@ -62,12 +63,12 @@ nav {
       margin: 20px;
     }
 
-    .user {
+    .user{
       display: flex;
       align-items: center;
       font-weight: bold;
 
-      img {
+      img{
         width: 40px;
         height: 40px;
         border-radius: 50%;
@@ -75,34 +76,34 @@ nav {
         margin-right: 20px;
       }
 
-      span {
-        @include sm {
+      span{
+        @include sm{
           display: none;
         }
       }
 
-      .profile {
+      .profile{
         padding: 12px 24px;
         background-color: #fece51;
         cursor: pointer;
         border: none;
         position: relative;
-
-        .notification {
-         position: absolute;
-         top: -8px;
-         right: -8px;
-         background-color: red;
-         color: white;
-         border-radius: 50%;
-         width: 26px;
-         height: 26px;
-         display: flex;
-         align-items: center;
-         justify-content: center;
+        
+        .notification{
+          position: absolute;
+          top: -8px;
+          right: -8px;
+          background-color: red;
+          color: white;
+          border-radius: 50%;
+          width: 26px;
+          height: 26px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
-      }
 
+      }
     }
 
     .register {
@@ -113,7 +114,7 @@ nav {
       display: none;
       z-index: 999;
 
-      img{
+      img {
         width: 36px;
         height: 36px;
         cursor: pointer;
@@ -123,7 +124,8 @@ nav {
         display: inline;
       }
     }
-    .menu{
+
+    .menu {
       position: absolute;
       top: 0;
       right: -50%;
@@ -138,7 +140,7 @@ nav {
       justify-content: center;
       font-size: 24px;
 
-      &.active{
+      &.active {
         right: 0;
       }
 
