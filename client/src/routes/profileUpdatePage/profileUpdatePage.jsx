@@ -1,11 +1,40 @@
-import './profileUpdatePage.scss'
-import UploadWidget from '../../components/uploadWidget/UploadWidget'
+import { useContext, useState } from "react";
+import "./profileUpdatePage.scss";
+import { AuthContext } from "../../context/AuthContext";
+import apiRequest from "../../lib/apiRequest";
+import { useNavigate } from "react-router-dom";
+import UploadWidget from "../../components/uploadWidget/UploadWidget";
 
-function ProfileUpdatePage(){
+function ProfileUpdatePage() {
+  const { currentUser, updateUser } = useContext(AuthContext);
+  const [error, setError] = useState("");
+  const [avatar, setAvatar] = useState([]);
+
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+
+    const { username, email, password } = Object.fromEntries(formData);
+
+    try {
+      const res = await apiRequest.put(`/users/${currentUser.id}`, {
+        username,
+        email,
+        password,
+        avatar:avatar[0]
+      });
+      updateUser(res.data);
+      navigate("/profile");
+    } catch (err) {
+      console.log(err);
+      setError(err.response.data.message);
+    }
+  };
+
   return (
-    <div className='profileUpdatePage'>
-
-
+    <div className="profileUpdatePage">
       <div className="formContainer">
         <form onSubmit={handleSubmit}>
           <h1>Update Profile</h1>
@@ -48,10 +77,8 @@ function ProfileUpdatePage(){
           setState={setAvatar}
         />
       </div>
-
-
     </div>
-  )
+  );
 }
 
-export default ProfileUpdatePage
+export default ProfileUpdatePage;
